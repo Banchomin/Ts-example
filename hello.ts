@@ -83,3 +83,5 @@ const dict = new Dict()
 dict.add(kimchi)
 dict.def("kimchi")
 */
+// 다음 강의 Interfaces
+//js로 바꾸기 => Terminal에 tsc 이름.확장자
