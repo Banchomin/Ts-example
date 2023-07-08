@@ -71,8 +71,8 @@ class Dict{
 
 class Word {
     constructor(
-        public term :string,
-        public def :string
+        public readonly term :string,
+        public readonly def :string
     ){}
 }
 
@@ -83,5 +83,31 @@ const dict = new Dict()
 dict.add(kimchi)
 dict.def("kimchi")
 */
-// 다음 강의 Interfaces
-//js로 바꾸기 => Terminal에 tsc 이름.확장자
+//* Interfaces = 오직 오브젝트의 모양을 설명함 / 같은 이름의 interface 만들기 가능 - 알아서 ts에서 합쳐줌
+//! type 설정은 type, 모양만 알려줄떄는 interface
+// type Team = "red" | "blue" | "yellow";
+
+// interface Player {
+//   nickname: string;
+//   team: Team;
+// };
+
+// const nico: Player = {
+//   nickname: "nico",
+//   team: "yellow",
+// };
+
+interface User {
+  name: string;
+}
+
+interface User {
+  age: number;
+}
+
+interface Player extends User {}
+
+const nico: Player = {
+  name: "nico",
+  age: 10,
+};
