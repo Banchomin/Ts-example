@@ -9,76 +9,26 @@
 // Polymorphism : many structure
 // Generic : 타입 유추 //* ex) type PrintArr = { <T>(arr:T[]) : T }
 // #3.4 more Generic
-//* Classes
-/*
-class Player{
-    constructor(
-        private firstName:string,
-        private lastName:string,
-        public nickname:string
-    ){}
-}
-
-const nico = new Player("nico", "las", "니꼬쌤")
-*/
-//* abstract class(추상 클래스) : 다른 클래스가 상속 받을 수 있는 클래스
-//* mothod class 안에 있는 함수
-//* getNickName과 같은 abstract method는 class에서 내용을 구현해야함
-/*
-abstract class User{
-    constructor(
-        protected firstName:string,
-        protected lastName:string,
-        protected nickname:string
-    ){}
-    abstract getNickName():void
-    getFullName(){
-        return `${this.firstName} ${this.lastName}`
+var Player = /** @class */ (function () {
+    function Player(firstName, lastName, health) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.health = health;
     }
+    Player.prototype.fullName = function () {
+        return "".concat(this.firstName, " ").concat(this.lastName);
+    };
+    Player.prototype.sayHi = function (name) {
+        return "Hello ".concat(name, ". My name is ").concat(this.fullName);
+    };
+    return Player;
+}());
+function makeUser(user) {
+    return "hi";
 }
-
-class Player extends User{}
-
-const nico = new Player("nico", "las", "니꼬쌤")
-nico.getFullName()
-*/
-//? Recap
-//Make Dict
-/*
-type Words = {
-    [key:string]:string
-    - Words 타입이 string만을 property로 가짐
-    
-}
-
-class Dict{
-    private words:Words
-    constructor(){
-        this.words = {}
-    }
-    add(word:Word){
-        if(this.words[word.term] === undefinded){
-            this.words[word.term] = word.def
-        }
-    }
-    def(term:string){
-        return this.words[term]
-    }
-}
-
-class Word {
-    constructor(
-        public readonly term :string,
-        public readonly def :string
-    ){}
-}
-
-const kimchi = new Word("kimchi", "한국의 음식")
-
-const dict = new Dict()
-
-dict.add(kimchi)
-dict.def("kimchi")
-*/
-// 다음 강의 Interfaces
-//js로 바꾸기 => Terminal에 tsc 이름.확장자
+makeUser({
+    firstName: "nico",
+    lastName: "las",
+    fullName: function () { return "XX"; },
+    sayHi: function (name) { return "string"; },
+});

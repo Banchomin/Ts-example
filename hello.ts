@@ -97,17 +97,64 @@ dict.def("kimchi")
 //   team: "yellow",
 // };
 
-interface User {
-  name: string;
-}
+// interface User {
+//   name: string;
+// }
+
+// interface User {
+//   age: number;
+// }
+
+// interface Player extends User {}
+
+// const nico: Player = {
+//   name: "nico",
+//   age: 10,
+// };
+//* interface part two
+// abstract class User {
+//   constructor(protected firstName: string, protected lastName: string) {}
+//   abstract sayHi(name: string): string;
+//   abstract fullName(): string;
+// }
+
+// class Player extends User {
+//   fullName(): string {
+//     return `${this.firstName} ${this.lastName}`;
+//   }
+//   sayHi(name: string): string {
+//     return `Hello ${name}. My name is ${this.fullName}`;
+//   }
+// }
 
 interface User {
-  age: number;
+  firstName: string;
+  lastName: string;
+  fullName(): string;
+  sayHi(name: string): string;
 }
 
-interface Player extends User {}
+interface Human {
+  health: number;
+}
 
-const nico: Player = {
-  name: "nico",
-  age: 10,
-};
+class Player implements User, Human {
+  constructor(public firstName: string, public lastName: string, public health: number) {}
+  fullName(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
+  sayHi(name: string): string {
+    return `Hello ${name}. My name is ${this.fullName}`;
+  }
+}
+
+function makeUser(user: User) {
+  return "hi";
+}
+
+makeUser({
+  firstName: "nico",
+  lastName: "las",
+  fullName: () => "XX",
+  sayHi: (name) => "string",
+});
