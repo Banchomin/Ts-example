@@ -160,43 +160,71 @@ dict.def("kimchi")
 // });
 
 //* Recap
-type PlayerA = {
-  name: string;
-};
+// type PlayerA = {
+//   name: string;
+// };
 
-type PlayerAA = PlayerA & {
-  lastName: string;
-};
+// type PlayerAA = PlayerA & {
+//   lastName: string;
+// };
 
-const user1: PlayerAA = {
-  name: "nico",
-  lastName: "las",
-};
-interface PlayerB {
-  name: string;
+// const user1: PlayerAA = {
+//   name: "nico",
+//   lastName: "las",
+// };
+// interface PlayerB {
+//   name: string;
+// }
+
+// interface PlayerBB extends PlayerB {
+//   lastName: string;
+// }
+// interface PlayerBB {
+//   health: number;
+// }
+// const user2: PlayerBB = {
+//   name: "nico",
+//   lastName: "las",
+//   health: 10,
+// };
+// // ------------------------------------
+// type PlayerC = {
+//   firstName: string;
+// };
+
+// interface PlayerD {
+//   firstName: string;
+// }
+
+// class User implements PlayerD {
+//   constructor(public firstName: string) {}
+// }
+// // type interface 둘다 class에게 상속 가능하다
+
+interface SStorage<T> {
+  [key: string]: T;
+}
+class LocalStorage<T> {
+  private storage: SStorage<T> = {};
+  set(key: string, value: T) {
+    this.storage[key] = value;
+  }
+  remove(key: string) {
+    delete this.storage[key];
+  }
+  get(key: string): T {
+    return this.storage[key];
+  }
+  clear() {
+    this.storage = {};
+  }
 }
 
-interface PlayerBB extends PlayerB {
-  lastName: string;
-}
-interface PlayerBB {
-  health: number;
-}
-const user2: PlayerBB = {
-  name: "nico",
-  lastName: "las",
-  health: 10,
-};
-// ------------------------------------
-type PlayerC = {
-  firstName: string;
-};
+const stringStorage = new LocalStorage<string>();
 
-interface PlayerD {
-  firstName: string;
-}
+stringStorage.get("fkdjsdf");
+stringStorage.set("fjkdjakfj", "fdfd");
 
-class User implements PlayerD {
-  constructor(public firstName: string) {}
-}
-// type interface 둘다 class에게 상속 가능하다
+const booleanStorage = new LocalStorage<boolean>();
+
+booleanStorage.get("fkdjk");

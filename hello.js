@@ -9,19 +9,26 @@
 // Polymorphism : many structure
 // Generic : 타입 유추 //* ex) type PrintArr = { <T>(arr:T[]) : T }
 // #3.4 more Generic
-var user1 = {
-    name: "nico",
-    lastName: "las",
-};
-var user2 = {
-    name: "nico",
-    lastName: "las",
-    health: 10,
-};
-var User = /** @class */ (function () {
-    function User(firstName) {
-        this.firstName = firstName;
+var LocalStorage = /** @class */ (function () {
+    function LocalStorage() {
+        this.storage = {};
     }
-    return User;
+    LocalStorage.prototype.set = function (key, value) {
+        this.storage[key] = value;
+    };
+    LocalStorage.prototype.remove = function (key) {
+        delete this.storage[key];
+    };
+    LocalStorage.prototype.get = function (key) {
+        return this.storage[key];
+    };
+    LocalStorage.prototype.clear = function () {
+        this.storage = {};
+    };
+    return LocalStorage;
 }());
-// type interface 둘다 class에게 상속 가능하다
+var stringStorage = new LocalStorage();
+stringStorage.get("fkdjsdf");
+stringStorage.set("fjkdjakfj", "fdfd");
+var booleanStorage = new LocalStorage();
+booleanStorage.get("fkdjk");
