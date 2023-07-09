@@ -127,34 +127,76 @@ dict.def("kimchi")
 //   }
 // }
 
-interface User {
-  firstName: string;
+// interface User {
+//   firstName: string;
+//   lastName: string;
+//   fullName(): string;
+//   sayHi(name: string): string;
+// }
+
+// interface Human {
+//   health: number;
+// }
+
+// class Player implements User, Human {
+//   constructor(public firstName: string, public lastName: string, public health: number) {}
+//   fullName(): string {
+//     return `${this.firstName} ${this.lastName}`;
+//   }
+//   sayHi(name: string): string {
+//     return `Hello ${name}. My name is ${this.fullName}`;
+//   }
+// }
+
+// function makeUser(user: User) {
+//   return "hi";
+// }
+
+// makeUser({
+//   firstName: "nico",
+//   lastName: "las",
+//   fullName: () => "XX",
+//   sayHi: (name) => "string",
+// });
+
+//* Recap
+type PlayerA = {
+  name: string;
+};
+
+type PlayerAA = PlayerA & {
   lastName: string;
-  fullName(): string;
-  sayHi(name: string): string;
+};
+
+const user1: PlayerAA = {
+  name: "nico",
+  lastName: "las",
+};
+interface PlayerB {
+  name: string;
 }
 
-interface Human {
+interface PlayerBB extends PlayerB {
+  lastName: string;
+}
+interface PlayerBB {
   health: number;
 }
-
-class Player implements User, Human {
-  constructor(public firstName: string, public lastName: string, public health: number) {}
-  fullName(): string {
-    return `${this.firstName} ${this.lastName}`;
-  }
-  sayHi(name: string): string {
-    return `Hello ${name}. My name is ${this.fullName}`;
-  }
-}
-
-function makeUser(user: User) {
-  return "hi";
-}
-
-makeUser({
-  firstName: "nico",
+const user2: PlayerBB = {
+  name: "nico",
   lastName: "las",
-  fullName: () => "XX",
-  sayHi: (name) => "string",
-});
+  health: 10,
+};
+// ------------------------------------
+type PlayerC = {
+  firstName: string;
+};
+
+interface PlayerD {
+  firstName: string;
+}
+
+class User implements PlayerD {
+  constructor(public firstName: string) {}
+}
+// type interface 둘다 class에게 상속 가능하다

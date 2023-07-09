@@ -9,26 +9,19 @@
 // Polymorphism : many structure
 // Generic : 타입 유추 //* ex) type PrintArr = { <T>(arr:T[]) : T }
 // #3.4 more Generic
-var Player = /** @class */ (function () {
-    function Player(firstName, lastName, health) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.health = health;
-    }
-    Player.prototype.fullName = function () {
-        return "".concat(this.firstName, " ").concat(this.lastName);
-    };
-    Player.prototype.sayHi = function (name) {
-        return "Hello ".concat(name, ". My name is ").concat(this.fullName);
-    };
-    return Player;
-}());
-function makeUser(user) {
-    return "hi";
-}
-makeUser({
-    firstName: "nico",
+var user1 = {
+    name: "nico",
     lastName: "las",
-    fullName: function () { return "XX"; },
-    sayHi: function (name) { return "string"; },
-});
+};
+var user2 = {
+    name: "nico",
+    lastName: "las",
+    health: 10,
+};
+var User = /** @class */ (function () {
+    function User(firstName) {
+        this.firstName = firstName;
+    }
+    return User;
+}());
+// type interface 둘다 class에게 상속 가능하다
